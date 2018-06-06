@@ -6,7 +6,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h2>info.jsp 입니다.</h2>
+<h2>seller.jsp 입니다.</h2>
 <a href="${pageContext.request.contextPath}/">메인으로</a>
 </body>
 </html>

@@ -10,7 +10,7 @@
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property>
 		<property name="url"
-			value="jdbc:mysql://localhost:3306/testdb?useSSL=false&amp;serverTimezone=UTC"></property>
+			value="jdbc:mysql://localhost:3306/HelloMart?useSSL=false&amp;serverTimezone=UTC"></property>
 		<property name="username" value="jspid"></property>
 		<property name="password" value="jsppass"></property>
 	</bean>
@@ -28,7 +28,6 @@
 	</bean>
 	
 	<!-- bean 등록 -->
-	<context:component-scan base-package="com.hellomart.dao.impl"></context:component-scan>
 	<context:component-scan base-package="com.hellomart.service.impl"></context:component-scan>
 		
 </beans>

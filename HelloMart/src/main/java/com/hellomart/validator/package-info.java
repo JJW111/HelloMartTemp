@@ -5,4 +5,4 @@
  * @author ITWILL
  *
  */
-package com.hellomart.domain.dto;
+package com.hellomart.validator;

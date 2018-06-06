@@ -17,10 +17,20 @@ public class MainController {
 		logger.info("main page");
 		return "index";
 	}
+
+	@RequestMapping(value="/member", method=RequestMethod.GET)
+	public String member() {
+		return "member";
+	}
+	
+	@RequestMapping(value="/seller", method=RequestMethod.GET)
+	public String seller() {
+		return "seller";
+	}
 	
 	@RequestMapping(value="/admin", method=RequestMethod.GET)
-	public String privateHome() {
-		return "privatePage";
+	public String admin() {
+		return "admin";
 	}
 	
 }

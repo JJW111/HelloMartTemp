@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- </mapper> -->
+<mapper namespace="com.hellomart.dao.AccountDAO">
+
+	<select id="getLoginInfo" resultType="Account">
+		SELECT ID, PASSWORD, Role FROM Account WHERE #{id}
+	</select>
+	
+	<insert id="insertAccount">
+		INSERT INTO 
+		
+		Account (ID, Password, Role, EMail, 
+		Address, Phone, Name, BirthDate, Gender) 
+		
+		VALUES (#{id}, #{password}, #{role}, #{eMail}, 
+		#{address}, #{phone}, #{name}, STR_TO_DATE(#{birthDate}, '%Y%m%d'), #{gender});
+	</insert>
+	
+	<delete id="deleteAccount">
+		DELETE FROM Account WHERE ID = #{id}
+	</delete>
+	
+	<delete id="deleteAll">
+		DELETE FROM Account
+	</delete>
+	
+</mapper>

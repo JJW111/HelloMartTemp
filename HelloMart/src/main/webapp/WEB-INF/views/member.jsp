@@ -3,11 +3,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>HelloMart</title>
+<title>Insert title here</title>
 </head>
 <body>
-<a href="member">member</a><br/>
-<a href="seller">seller</a><br/>
-<a href="admin">admin</a><br/>
+<h2>member.jsp 입니다.</h2>
+<a href="${pageContext.request.contextPath}/">메인으로</a>
 </body>
 </html>
