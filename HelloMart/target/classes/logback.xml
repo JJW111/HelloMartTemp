@@ -4,14 +4,36 @@
 	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
 		<layout class="ch.qos.logback.classic.PatternLayout">
 			<Pattern>
-			   	%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n
+			   	%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n
 			</Pattern>
 		</layout>
 	</appender>
 
-	<root>
-		<priority value="INFO" />
-		<appender-ref ref="STDOUT" />
+	<!-- 
+		additivity="false" : root 로거와 중복되서 출력되지 않도록 한다.
+	-->
+	<logger name="com.hellomart" level="INFO" additivity="false">
+    	<appender-ref ref="STDOUT" />
+    </logger>
+	
+	<!--
+		이 부분은 서버 개발자에 의한 로그 메시지가 아닌
+		따로 설정하지 않아도 기본적으로 출력되는 로그 메시지들을 
+		출력되지 않게 한다.
+	-->
+    <statusListener class="ch.qos.logback.core.status.NopStatusListener" />
+
+    <appender name="SYSTEM" class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <Pattern>
+                %d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n
+            </Pattern>
+        </layout>
+    </appender>
+	
+	<root level="ERROR">
+		<appender-ref ref="SYSTEM" />
 	</root>
+	<!-- END -->
 	
 </configuration>
