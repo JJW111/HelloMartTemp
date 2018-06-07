@@ -12,10 +12,10 @@ public class Account {
 	private int points;
 	private int grade;
 	private String eMail;
-	private String address;
+	private Address address;
 	private String phone;
 	private String name;
-	private String birthDate;
+	private BirthDate birthDate;
 	private char gender;
 	private int reliability;
 	private Timestamp joinDate;

@@ -3,29 +3,44 @@
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<!-- </mapper> -->
 <mapper namespace="com.hellomart.dao.AccountDAO">
 
-	<select id="getLoginInfo" resultType="Account">
-		SELECT ID, PASSWORD, Role FROM Account WHERE #{id}
+	<select id="getLoginInfo" resultType="Account" parameterType="String">
+		SELECT ID, Password, Role FROM Account WHERE ID = #{id}
 	</select>
 	
-	<insert id="insertAccount">
-		INSERT INTO 
+	<select id="getInfo" resultType="Account">
 		
-		Account (ID, Password, Role, EMail, 
-		Address, Phone, Name, BirthDate, Gender) 
+	</select>
+		
+	<insert id="insertAccount">
+		INSERT INTO
+		
+		Account (ID, Password, Role, EMail, PostCode, RoadAddress, 
+		JibunAddress, DetailAddress, Phone, Name, BirthYear, BirthMonth, BirthDay, Gender) 
 		
 		VALUES (#{id}, #{password}, #{role}, #{eMail}, 
-		#{address}, #{phone}, #{name}, STR_TO_DATE(#{birthDate}, '%Y%m%d'), #{gender});
+		#{address.postCode}, #{address.roadAddress}, #{address.jibunAddress}, #{address.detailAddress}, 
+		#{phone}, #{name}, #{birthDate.year}, #{birthDate.month}, #{birthDate.day}, #{gender});
 	</insert>
 	
 	<delete id="deleteAccount">
 		DELETE FROM Account WHERE ID = #{id}
 	</delete>
 	
-	<delete id="deleteAll">
-		DELETE FROM Account
+	
+	
+	<!-- 테스트 목적으로 사용되는 SQL문 -->
+	<select id="get" resultType="Account">
+		SELECT ID, Password, Role, Points, Grade, EMail,
+			   PostCode, RoadAddress, JibunAddress, DetailAddress,
+			   Phone, Name, BirthYear, BirthMonth, BirthDay, Gender, Reliability, JoinDate
+		FROM Account WHERE ID = #{id};
+	</select>
+	
+	<delete id="truncate">
+		TRUNCATE Account
 	</delete>
+	<!-- 테스트 목적으로 사용되는 SQL문 -->
 	
 </mapper>

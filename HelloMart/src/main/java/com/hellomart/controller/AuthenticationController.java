@@ -13,4 +13,9 @@ public class AuthenticationController {
 		return "account/login";
 	}
 	
+	@RequestMapping(value = "/login", method=RequestMethod.POST)
+	public String loginPost(Model model) {
+		return "account/login";
+	}
+	
 }

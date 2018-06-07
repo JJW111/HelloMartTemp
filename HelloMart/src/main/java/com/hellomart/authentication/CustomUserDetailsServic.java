@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -17,7 +19,10 @@ import com.hellomart.dao.AccountDAO;
 import com.hellomart.dto.Account;
 
 @Service
-public class DBAuthenticationService implements UserDetailsService {
+public class CustomUserDetailsServic implements UserDetailsService {
+	
+	@SuppressWarnings("unused")
+	private static final Logger logger = LoggerFactory.getLogger(CustomUserDetailsServic.class);
 	
 	@Autowired
 	private SqlSession sqlSession;

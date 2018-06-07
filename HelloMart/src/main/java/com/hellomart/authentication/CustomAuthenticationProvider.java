@@ -1,6 +1,6 @@
 package com.hellomart.authentication;
 
-import java.util.List;
+import java.util.Collection;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,36 +15,37 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Component;
 
 @Component
-public class DBAuthenticationProvider implements AuthenticationProvider {
+public class CustomAuthenticationProvider implements AuthenticationProvider {
 	
-	private static final Logger logger = LoggerFactory.getLogger(AuthenticationProvider.class);
+	@SuppressWarnings("unused")
+	private static final Logger logger = LoggerFactory.getLogger(CustomAuthenticationProvider.class);
 	
 	@Autowired
-	private DBAuthenticationService authService;
+	private CustomUserDetailsServic authService;
 	
 	@Override
 	public Authentication authenticate(Authentication authentication) throws AuthenticationException {
 		String username = authentication.getName();
 		String password = (String) authentication.getCredentials();
 		
-		logger.info("username : " + username);
-		logger.info("password : " + password);
-		
 		User user = null;
-		List<GrantedAuthority> authorities = null;
+		Collection<GrantedAuthority> authorities = null;
 		
 		user = (User)authService.loadUserByUsername(username);
 		
-		if(password.equals(user.getPassword())) {
+		if(!password.equals(user.getPassword())) {
 			throw new BadCredentialsException("비밀번호가 일치하지 않습니다.");
 		};
+		
+		authorities = user.getAuthorities();
 		
 		return new UsernamePasswordAuthenticationToken(username, password, authorities);
 	}
 	
 	@Override
 	public boolean supports(Class<?> authentication) {
-		return UsernamePasswordAuthenticationToken.class.isAssignableFrom(authentication);
+		return true;
+//		return UsernamePasswordAuthenticationToken.class.isAssignableFrom(authentication);
 	}
 	
 }

@@ -12,7 +12,7 @@
 	<!-- 
 		additivity="false" : root 로거와 중복되서 출력되지 않도록 한다.
 	-->
-	<logger name="com.hellomart" level="INFO" additivity="false">
+	<logger name="com.hellomart" level="DEBUG" additivity="false">
     	<appender-ref ref="STDOUT" />
     </logger>
 	
@@ -27,7 +27,7 @@
         <layout class="ch.qos.logback.classic.PatternLayout">
             <Pattern>
                 %d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n
-            </Pattern>
+            </Pattern>S
         </layout>
     </appender>
 	

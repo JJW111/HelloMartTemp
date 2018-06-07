@@ -12,13 +12,13 @@
 		<tr>
 			<td width='50px'>User:</td>
 			<td>
-				<input type='text' name='id' value='' size=50>
+				<input type='text' name='id' value='${id}' size=30>
 			</td>
 		</tr>
 		<tr>
 			<td>Password:</td>
 			<td>
-				<input type='password' name='pw'/>
+				<input type='password' name='pw' size=30/>
 			</td>
 		</tr>
 		<tr>
