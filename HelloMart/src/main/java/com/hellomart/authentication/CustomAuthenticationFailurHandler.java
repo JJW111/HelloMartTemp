@@ -19,7 +19,7 @@ public class CustomAuthenticationFailurHandler implements AuthenticationFailureH
 	
 	/* 이동할 URL */
 	private String defaultFailUrl = "login";
-	
+	 
 	@Override
 	public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception)
 			throws IOException, ServletException {
