@@ -10,9 +10,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.User;
-import org.springframework.stereotype.Component;
 
-@Component
 public class CustomAuthenticationProvider implements AuthenticationProvider {
 	
 	@SuppressWarnings("unused")
@@ -25,12 +23,9 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 	public Authentication authenticate(Authentication authentication) throws AuthenticationException {
 		String username = authentication.getName();
 		String password = (String) authentication.getCredentials();
-
 		User user = (User)authService.loadUserByUsername(username);
 		
-		if(!password.equals(user.getPassword())) {
-			throw new BadCredentialsException("Bad Credentials");
-		}
+		comparePassword(password, user.getPassword());
 		
 		return new UsernamePasswordAuthenticationToken(username, password, user.getAuthorities());
 	}
@@ -38,6 +33,12 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 	@Override
 	public boolean supports(Class<?> authentication) {
 		return UsernamePasswordAuthenticationToken.class.isAssignableFrom(authentication);
+	}
+	
+	private void comparePassword(String password1, String password2) throws BadCredentialsException {
+		if(!password1.equals(password2)) {
+			throw new BadCredentialsException("Bad Credentials");
+		}
 	}
 	
 }

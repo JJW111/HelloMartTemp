@@ -30,13 +30,12 @@
 			default-target-url="/"
 			always-use-default-target="false"
 		/>
-<!-- 		authentication-failure-url="/login?fail=true"		 -->
 		<!-- 
 			login-page: 로그인  페이지
 			username-parameter": form 태그에서 사용할 id 태그 이름 지정
 			password-parameter: form 태그에서 사용할 password 태그 이름 지정
 			login-processing-url: form 태그의 action 값 지정
-			authentication-failure-handler-ref: 로그인 실패시 사용할 핸들러 bean 지정
+			authentication-failure-handler-ref: 로그인 실패시 사용할 핸들러 지정
 			default-target-url: 로그인 성공시 이동할 페이지
 			always-use-default-target: false이면 로그인 성공시 원래 이동하려던 페이지로 이동한다.
 									   true 이면 항상 default-target-url에 명시된 페이지로 이동한다.
@@ -57,13 +56,10 @@
 
     <authentication-manager>
     	<authentication-provider ref="userProvider"/>
-		<authentication-provider user-service-ref="userService"/>
 	</authentication-manager>
 
 	<beans:bean id="authenticatedFailurHandler" class="com.hellomart.authentication.CustomAuthenticationFailurHandler" />
-
 	<beans:bean id="userProvider" class="com.hellomart.authentication.CustomAuthenticationProvider" />
-	
 	<beans:bean id="userService" class="com.hellomart.authentication.CustomUserDetailsService" />    		
 
 </beans:beans>

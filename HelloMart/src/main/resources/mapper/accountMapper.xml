@@ -12,10 +12,10 @@
 	<insert id="insertAccount">
 		INSERT INTO
 		
-		Account (ID, Password, Role, EMail, PostCode, RoadAddress,
+		Account (ID, Password, EMail, PostCode, RoadAddress,
 		JibunAddress, DetailAddress, Phone, Name, BirthYear, BirthMonth, BirthDay, Gender)
 		
-		VALUES (#{id}, #{password}, 'MEMBER', #{eMail}, 
+		VALUES (#{id}, #{password}, #{eMail}, 
 		#{postCode}, #{roadAddress}, #{jibunAddress}, #{detailAddress}, 
 		#{phone}, #{name}, #{birthYear}, #{birthMonth}, #{birthDay}, #{gender});
 	</insert>
@@ -25,8 +25,12 @@
 	</delete>
 	
 	<!-- 테스트 목적으로 사용되는 SQL문 -->
+	<select id="count" resultType="java.lang.Integer">
+		SELECT COUNT(*) AS cnt FROM Account
+	</select>
+	
 	<select id="get" resultType="Account">
-		SELECT Password, Role, Points, Grade, EMail,
+		SELECT ID, Password, Role, Points, Grade, EMail,
 			   PostCode, RoadAddress, JibunAddress, DetailAddress,
 			   Phone, Name, BirthYear, BirthMonth, BirthDay, Gender, Reliability, JoinDate
 		FROM Account WHERE ID = #{id};

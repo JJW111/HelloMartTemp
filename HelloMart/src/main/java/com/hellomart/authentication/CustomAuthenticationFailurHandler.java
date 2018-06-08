@@ -1,20 +1,14 @@
 package com.hellomart.authentication;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.web.WebAttributes;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 
 
@@ -29,33 +23,19 @@ public class CustomAuthenticationFailurHandler implements AuthenticationFailureH
 	@Override
 	public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception)
 			throws IOException, ServletException {
-		String url = createUrl(exception);
+		String url = appendParam(exception);
 		
 		response.sendRedirect(url);
 	}
 
-	private String createUrl(AuthenticationException exception) {
+	private String appendParam(AuthenticationException exception) {
 		StringBuilder sb = new StringBuilder(defaultFailUrl);
 		
-		int result = getExceptionResult(exception);
-		
 		sb
-			.append("?fail=").append("true")
-			.append("&")
-			.append("result=").append(result);
+			.append("?")
+			.append("fail=").append("true");
 		
 		return sb.toString();
-	}
-	
-	private int getExceptionResult(AuthenticationException exception) {
-		if (
-				exception.getClass().isAssignableFrom(UsernameNotFoundException.class) ||
-				exception.getClass().isAssignableFrom(BadCredentialsException.class)) {
-			return 1;
-		} else {
-			return 0;
-		}
-		
 	}
 	
 }
