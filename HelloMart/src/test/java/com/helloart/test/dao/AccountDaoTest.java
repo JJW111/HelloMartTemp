@@ -1,7 +1,7 @@
 package com.helloart.test.dao;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
@@ -11,22 +11,16 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.hellomart.dao.AccountDAO;
 import com.hellomart.dto.Account;
-import com.hellomart.dto.Address;
-import com.hellomart.dto.BirthDate;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations={ "file:src/main/webapp/WEB-INF/spring/root-context.xml" })
 public class AccountDaoTest {
-	
-	private static final Logger logger = LoggerFactory.getLogger(AccountDaoTest.class);
 	
 	@Autowired
 	private SqlSession sqlSession;
@@ -46,21 +40,24 @@ public class AccountDaoTest {
 	
 	@Test
 	public void insertAccountTest() {
+		String username = "papayaza111";
+		String postCode = "12345";
+		String birthYear = "2000";
+		
 		Account account = new Account();
 		
-		account.setId("papayaza111");
+		account.setId(username);
 		account.setPassword("practice123");
-		account.setRole("MEMBER");
 		account.setEMail("papayaza111@gmail.com");
-		account.setAddress(new Address(
-				"12345",
-				"Road Address",
-				"Jibun Address",
-				"Detail Address"
-				));
+		account.setPostCode(postCode);
+		account.setRoadAddress("Road Address");
+		account.setJibunAddress("Jibun Address");
+		account.setDetailAddress("Detail Address");
 		account.setPhone("010-1234-5678");
 		account.setName("jjw");
-		account.setBirthDate(new BirthDate("2000", "03", "01"));
+		account.setBirthYear(birthYear);
+		account.setBirthMonth("03");
+		account.setBirthDay("01");
 		account.setGender('F');
 		
 		
@@ -74,10 +71,17 @@ public class AccountDaoTest {
 		assertThat(account2, is(nullValue()));
 		
 		/* 일치하는 계정 정보를 불러온다. */
-		Account account3 = accountDao.get("papayaza111");
+		Account account3 = accountDao.get(username);
 		
 		/* null 값이 아니라면 정상! */
-		assertThat(account3, is(notNullValue()));
+		assertThat(account3, is(not(nullValue())));
+		
+		assertEquals(account3.getPostCode(), postCode);
+		assertEquals(account3.getBirthYear(), birthYear);
+		
+		Account account4 = accountDao.findAccount(username);
+		
+		assertEquals(account4.getRole(), "MEMBER");
 	}
 	
 }

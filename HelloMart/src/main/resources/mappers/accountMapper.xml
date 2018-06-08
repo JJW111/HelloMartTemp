@@ -5,34 +5,28 @@
 
 <mapper namespace="com.hellomart.dao.AccountDAO">
 
-	<select id="getLoginInfo" resultType="Account" parameterType="String">
-		SELECT ID, Password, Role FROM Account WHERE ID = #{id}
+	<select id="findAccount" resultType="Account" parameterType="String">
+		SELECT Password, Role FROM Account WHERE ID = #{id}
 	</select>
 	
-	<select id="getInfo" resultType="Account">
-		
-	</select>
-		
 	<insert id="insertAccount">
 		INSERT INTO
 		
-		Account (ID, Password, Role, EMail, PostCode, RoadAddress, 
-		JibunAddress, DetailAddress, Phone, Name, BirthYear, BirthMonth, BirthDay, Gender) 
+		Account (ID, Password, Role, EMail, PostCode, RoadAddress,
+		JibunAddress, DetailAddress, Phone, Name, BirthYear, BirthMonth, BirthDay, Gender)
 		
-		VALUES (#{id}, #{password}, #{role}, #{eMail}, 
-		#{address.postCode}, #{address.roadAddress}, #{address.jibunAddress}, #{address.detailAddress}, 
-		#{phone}, #{name}, #{birthDate.year}, #{birthDate.month}, #{birthDate.day}, #{gender});
+		VALUES (#{id}, #{password}, 'MEMBER', #{eMail}, 
+		#{postCode}, #{roadAddress}, #{jibunAddress}, #{detailAddress}, 
+		#{phone}, #{name}, #{birthYear}, #{birthMonth}, #{birthDay}, #{gender});
 	</insert>
 	
 	<delete id="deleteAccount">
 		DELETE FROM Account WHERE ID = #{id}
 	</delete>
 	
-	
-	
 	<!-- 테스트 목적으로 사용되는 SQL문 -->
 	<select id="get" resultType="Account">
-		SELECT ID, Password, Role, Points, Grade, EMail,
+		SELECT Password, Role, Points, Grade, EMail,
 			   PostCode, RoadAddress, JibunAddress, DetailAddress,
 			   Phone, Name, BirthYear, BirthMonth, BirthDay, Gender, Reliability, JoinDate
 		FROM Account WHERE ID = #{id};

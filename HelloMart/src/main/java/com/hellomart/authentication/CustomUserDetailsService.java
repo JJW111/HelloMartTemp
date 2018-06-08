@@ -19,10 +19,10 @@ import com.hellomart.dao.AccountDAO;
 import com.hellomart.dto.Account;
 
 @Service
-public class CustomUserDetailsServic implements UserDetailsService {
+public class CustomUserDetailsService implements UserDetailsService {
 	
 	@SuppressWarnings("unused")
-	private static final Logger logger = LoggerFactory.getLogger(CustomUserDetailsServic.class);
+	private static final Logger logger = LoggerFactory.getLogger(CustomUserDetailsService.class);
 	
 	@Autowired
 	private SqlSession sqlSession;
@@ -33,21 +33,18 @@ public class CustomUserDetailsServic implements UserDetailsService {
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		dao = sqlSession.getMapper(AccountDAO.class);
 		
-		Account account = dao.getLoginInfo(username);
+		Account account = dao.findAccount(username);
 		
 		if(account == null) {
-			throw new UsernameNotFoundException("존재하지 않는 계정입니다.");
+			throw new UsernameNotFoundException("Bad Credentials");
 		}
 		
 		String role = account.getRole();
-		
 		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
-		
 		GrantedAuthority authority = new SimpleGrantedAuthority("ROLE_" + role);
-		
 		authorities.add(authority);
 		
-        UserDetails userDetails = (UserDetails) new User(account.getId(), account.getPassword(), authorities);
+        UserDetails userDetails = (UserDetails) new User(username, account.getPassword(), authorities);
         
 		return userDetails;
 	}

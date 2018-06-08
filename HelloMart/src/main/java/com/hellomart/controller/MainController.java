@@ -5,32 +5,16 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class MainController {
 	
+	@SuppressWarnings("unused")
 	private static final Logger logger = LoggerFactory.getLogger(MainController.class);
 	
 	@RequestMapping("/")
 	public String index(Model model) {
-		logger.info("main page");
 		return "index";
 	}
 
-	@RequestMapping(value="/member", method=RequestMethod.GET)
-	public String member() {
-		return "member";
-	}
-	
-	@RequestMapping(value="/seller", method=RequestMethod.GET)
-	public String seller() {
-		return "seller";
-	}
-	
-	@RequestMapping(value="/admin", method=RequestMethod.GET)
-	public String admin() {
-		return "admin";
-	}
-	
 }

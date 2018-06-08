@@ -12,10 +12,15 @@ public class Account {
 	private int points;
 	private int grade;
 	private String eMail;
-	private Address address;
+	private String postCode;
+	private String roadAddress;
+	private String jibunAddress;
+	private String detailAddress;
 	private String phone;
 	private String name;
-	private BirthDate birthDate;
+	private String birthYear;
+	private String birthMonth;
+	private String birthDay;
 	private char gender;
 	private int reliability;
 	private Timestamp joinDate;

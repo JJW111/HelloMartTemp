@@ -3,12 +3,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>HelloMart</title>
+<title>접근 권한이 없습니다.</title>
 </head>
 <body>
-<a href="member/page">member</a><br/>
-<a href="seller/page">seller</a><br/>
-<a href="admin/page">admin</a><br/>
-<a href="logout">logout</a>
+<div align="center">
+	<h1>403 접근 권한이 없습니다.</h1>
+	<p>잘못된 요청입니다. 메인 화면으로 돌아가시려면 <a href="${pageContext.request.contextPath}/">여기</a>를 클릭하십시오</p>
+</div>
 </body>
 </html>
