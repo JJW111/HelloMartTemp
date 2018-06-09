@@ -1,6 +1,6 @@
 package com.hellomart.dto;
 
-import java.sql.Timestamp;
+import java.util.Date;
 
 import lombok.Data;
 
@@ -23,5 +23,5 @@ public class Account {
 	private String birthDay;
 	private char gender;
 	private int reliability;
-	private Timestamp joinDate;
+	private Date joinDate;
 }

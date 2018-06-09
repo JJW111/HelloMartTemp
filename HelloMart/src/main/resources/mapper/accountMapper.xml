@@ -15,8 +15,8 @@
 		Account (ID, Password, EMail, PostCode, RoadAddress,
 		JibunAddress, DetailAddress, Phone, Name, BirthYear, BirthMonth, BirthDay, Gender)
 		
-		VALUES (#{id}, #{password}, #{eMail}, 
-		#{postCode}, #{roadAddress}, #{jibunAddress}, #{detailAddress}, 
+		VALUES (#{id}, #{password}, #{eMail},
+		#{postCode}, #{roadAddress}, #{jibunAddress}, #{detailAddress},
 		#{phone}, #{name}, #{birthYear}, #{birthMonth}, #{birthDay}, #{gender});
 	</insert>
 	
