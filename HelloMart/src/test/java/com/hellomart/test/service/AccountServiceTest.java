@@ -1,4 +1,4 @@
-package com.helloart.test.dao;
+package com.hellomart.test.service;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
@@ -17,10 +17,14 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.hellomart.dao.AccountDAO;
 import com.hellomart.dto.Account;
+import com.hellomart.service.AccountService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations={ "file:src/main/webapp/WEB-INF/spring/root-context.xml" })
-public class AccountDaoTest {
+public class AccountServiceTest {
+	
+	@Autowired
+	private AccountService service;
 	
 	@Autowired
 	private SqlSession sqlSession;
@@ -86,10 +90,10 @@ public class AccountDaoTest {
 		Account a1 = getNewAccount();
 		
 		/* 계정을 등록시킨다. */
-		dao.insertAccount(a1);
+		service.insertAccount(a1);
 		
 		/* 한 개의 행이 존재하는지 확인한다. */
-		int count = dao.count();
+		int count = service.count();
 		assertEquals(count, 1);
 		
 		/* 일치하는 아이디가 없는 계정 정보를 불러온다. */
@@ -118,10 +122,10 @@ public class AccountDaoTest {
 		assertThat(a1.equals(a3), is(true));
 		
 		/* 계정을 삭제한다. */
-		dao.deleteAccount(id);
+		service.deleteAccount(id);
 		
 		/* 계정 삭제 후 테이블의 행의 수가 0인지 확인한다. */
-		count = dao.count();
+		count = service.count();
 		assertEquals(count, 0);
 	}
 	

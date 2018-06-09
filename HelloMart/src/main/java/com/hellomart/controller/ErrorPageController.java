@@ -26,4 +26,10 @@ public class ErrorPageController {
 		return "error/403";
 	}
 	
+	@RequestMapping("/500")
+	public String _500(HttpServletResponse response) {
+		response.setStatus(HttpServletResponse.SC_OK);
+		return "error/500";
+	}
+	
 }
