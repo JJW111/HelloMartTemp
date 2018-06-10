@@ -11,10 +11,9 @@ public class Account {
 	private String role;
 	private int points;
 	private int grade;
-	private String eMail;
+	private String email;
 	private String postCode;
 	private String roadAddress;
-	private String jibunAddress;
 	private String detailAddress;
 	private String phone;
 	private String name;

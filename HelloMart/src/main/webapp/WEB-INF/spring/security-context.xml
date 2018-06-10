@@ -25,7 +25,7 @@
 			login-page="/login"
 			username-parameter="id"
 			password-parameter="pw"
-			login-processing-url="/loginProcess"
+			login-processing-url="/login"
 			authentication-failure-handler-ref="authenticatedFailurHandler"
 			default-target-url="/"
 			always-use-default-target="false"

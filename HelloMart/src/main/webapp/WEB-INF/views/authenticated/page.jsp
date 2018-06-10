@@ -3,12 +3,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Bad Request</title>
+<title>Insert title here</title>
 </head>
 <body>
-<div align="center">
-	<h1>400 잘못된 요청입니다.</h1>
-	<p>잘못된 요청입니다. 메인 화면으로 돌아가시려면 <a href="${pageContext.request.contextPath}/">여기</a>를 클릭하십시오</p>
-</div>
+<h2>authenticated.jsp 입니다.</h2>
+<a href="${pageContext.request.contextPath}/">메인으로</a>
 </body>
 </html>

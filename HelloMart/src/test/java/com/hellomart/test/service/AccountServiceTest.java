@@ -6,7 +6,6 @@ import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
-import org.apache.ibatis.session.SqlSession;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -27,8 +26,6 @@ public class AccountServiceTest {
 	private AccountService service;
 	
 	@Autowired
-	private SqlSession sqlSession;
-	
 	private AccountDAO dao;
 	
 	private String wrongId = "papayaza222";
@@ -38,10 +35,9 @@ public class AccountServiceTest {
 	private String role = "MEMBER";
 	private int points = 0;
 	private int grade = 0;
-	private String eMail = "papayaza111@gmail.com";
+	private String email = "papayaza111@gmail.com";
 	private String postCode = "12345";
 	private String roadAddress = "Road Address";
-	private String jibunAddress = "Jibun Address";
 	private String detailAddress = "Detail Address";
 	private String phone = "010-1234-5678";
 	private String name = "jjw";
@@ -53,7 +49,6 @@ public class AccountServiceTest {
 	
 	@Before
 	public void before() {
-		dao = sqlSession.getMapper(AccountDAO.class);
 		dao.truncate();
 	}
 	
@@ -70,10 +65,9 @@ public class AccountServiceTest {
 		
 		account.setId(id);
 		account.setPassword(password);
-		account.setEMail(eMail);
+		account.setEmail(email);
 		account.setPostCode(postCode);
 		account.setRoadAddress(roadAddress);
-		account.setJibunAddress(jibunAddress);
 		account.setDetailAddress(detailAddress);
 		account.setPhone(phone);
 		account.setName(name);

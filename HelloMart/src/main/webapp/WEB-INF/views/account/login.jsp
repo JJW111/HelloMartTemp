@@ -8,7 +8,7 @@
 <title>로그인 페이지</title>
 </head>
 <body>
-<form name='f' action='loginProcess' method='POST'>
+<form name='f' action='login' method='post'>
 	<table>
 		<tr>
 			<td width='50px'>User:</td>

@@ -12,11 +12,11 @@
 	<insert id="insertAccount">
 		INSERT INTO
 		
-		Account (ID, Password, EMail, PostCode, RoadAddress,
-		JibunAddress, DetailAddress, Phone, Name, BirthYear, BirthMonth, BirthDay, Gender)
+		Account (ID, Password, Email, PostCode, RoadAddress,
+		DetailAddress, Phone, Name, BirthYear, BirthMonth, BirthDay, Gender)
 		
-		VALUES (#{id}, #{password}, #{eMail},
-		#{postCode}, #{roadAddress}, #{jibunAddress}, #{detailAddress},
+		VALUES (#{id}, #{password}, #{email},
+		#{postCode}, #{roadAddress}, #{detailAddress},
 		#{phone}, #{name}, #{birthYear}, #{birthMonth}, #{birthDay}, #{gender});
 	</insert>
 	
@@ -30,8 +30,8 @@
 	</select>
 	
 	<select id="get" resultType="Account">
-		SELECT ID, Password, Role, Points, Grade, EMail,
-			   PostCode, RoadAddress, JibunAddress, DetailAddress,
+		SELECT ID, Password, Role, Points, Grade, Email,
+			   PostCode, RoadAddress, DetailAddress,
 			   Phone, Name, BirthYear, BirthMonth, BirthDay, Gender, Reliability, JoinDate
 		FROM Account WHERE ID = #{id};
 	</select>

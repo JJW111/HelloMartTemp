@@ -38,7 +38,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 	}
 	
 	private void comparePassword(String password1, String password2) throws BadCredentialsException {
-		if(!password1.equals(password2)) {
+		if(password1 == null || !password1.equals(password2)) {
 			throw new BadCredentialsException("Bad Credentials");
 		}
 	}

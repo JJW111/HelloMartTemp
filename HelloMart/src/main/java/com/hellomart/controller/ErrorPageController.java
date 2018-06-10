@@ -14,16 +14,22 @@ public class ErrorPageController {
 	@SuppressWarnings("unused")
 	private static final Logger logger = LoggerFactory.getLogger(ErrorPageController.class);
 	
-	@RequestMapping("/404")
-	public String _404(HttpServletResponse response) {
+	@RequestMapping("/400")
+	public String _400(HttpServletResponse response) {
 		response.setStatus(HttpServletResponse.SC_OK);
-		return "error/404";
+		return "error/400";
 	}
 	
 	@RequestMapping("/403")
 	public String _403(HttpServletResponse response) {
 		response.setStatus(HttpServletResponse.SC_OK);
 		return "error/403";
+	}
+	
+	@RequestMapping("/404")
+	public String _404(HttpServletResponse response) {
+		response.setStatus(HttpServletResponse.SC_OK);
+		return "error/404";
 	}
 	
 	@RequestMapping("/500")
